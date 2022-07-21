@@ -1,46 +1,35 @@
 import PropTypes from 'prop-types';
-import { nanoid } from 'nanoid'
 import s from './Statistics.module.css'
 
-const Statistics = ({name, options, total, positivePercentage})=> {
-
+const Statistics = ({good, neutral, bad, total, positivePercentage})=> {
+ 
     return (
-
         <div className={s.container}>
-            <div>
-                <p className={s.text} >
-                {name.map(name => (
-                            <span key={nanoid(4)} className={s.textValue}>{name}:</span> 
-                        ))} 
-                </p>
-            </div>
-            <div>
-                <p className={s.text}>
-                    {options.map(value => (
-                        <span key={ nanoid(4)} className={s.textValue}>{value}</span>
-                            ))}
-                </p>
-            </div>
-            
-            <div className={s.totalStatistics}>
-                <p className={s.totalText}>
-                    Total:
-                    <span >{total}</span>
-                </p>
-                <p className={s.totalText}>
-                    Posutive feedback:
-                    <span >{positivePercentage}%</span>
-                </p>
-
-            </div>
-            
+            <ul>
+                <li className={s.text} >Good:
+                    <span className={s.textValue}>{good}</span>          
+                </li>
+                <li className={s.text} >Neutral:
+                    <span className={s.textValue}>{neutral}</span>          
+                </li>
+                <li className={s.text} >Bad:
+                    <span className={s.textValue}>{bad}</span>          
+                </li>
+                <li className={s.text} >Total:
+                    <span className={s.textValue}>{total}</span>          
+                </li>
+                <li className={s.text} >Posutive feedback:
+                    <span className={s.textValue}>{positivePercentage}%</span>          
+                </li>
+            </ul>         
         </div>
     );
 };
 
 Statistics.propTypes = {
-    name: PropTypes.array.isRequired,
-    options: PropTypes.array.isRequired,
+    good: PropTypes.number.isRequired,
+    neutral: PropTypes.number.isRequired,
+    bad: PropTypes.number.isRequired,
     total: PropTypes.number.isRequired,
     positivePercentage: PropTypes.number.isRequired,
 }

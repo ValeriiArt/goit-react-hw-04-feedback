@@ -11,7 +11,7 @@ export function App() {
   const [bad, setBad] = useState(0);
 
   const feedbackState = { good, neutral, bad };
-
+  
   const handleOnClick = key => {
     switch (key) {
       case 'good':
@@ -32,7 +32,6 @@ export function App() {
     (sum, current) => sum + current, 0);
   const countPositiveFeedbackPercentage = Math.round(good * 100 / total);
   const optionsName = Object.keys(feedbackState);
-  const optionsStatistics = Object.values(feedbackState);
 
   return (
         <div>
@@ -46,8 +45,9 @@ export function App() {
 
           <Section title="Statistics">
             {total !== 0 ? <Statistics
-              name={optionsName}
-              options={optionsStatistics}
+              good={good}
+              neutral={neutral}
+              bad={bad}
               total={total}
               positivePercentage={countPositiveFeedbackPercentage}
             /> : <Notification
